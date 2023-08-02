@@ -25,7 +25,7 @@ echo ""
 read -p "Entrez le nom de la nouvelle base de données : " new_database
 
 # Création du nouvel utilisateur et de la nouvelle base de données
-mysql -uroot -ppassword<<MYSQL_SCRIPT
+mysql -uroot -pPASSWORD<<MYSQL_SCRIPT
 CREATE DATABASE IF NOT EXISTS $new_database;
 CREATE USER '$new_user'@'localhost' IDENTIFIED BY '$new_user_password';
 GRANT ALL PRIVILEGES ON $new_database.* TO '$new_user'@'localhost';
@@ -44,4 +44,7 @@ tar xzf glpi-10.0.0.tgz -C /var/www/html
 chown -R www-data:www-data /home/var/www/glpi
 chmod -R 775 /home/var/www/glpi
 
-echo "normalement c good"
+server_ip=$(hostname -I | awk '{print $1}')
+
+echo "Adresse IP du GLPI : $server_ip/glpi"
+
