@@ -25,7 +25,7 @@ echo ""
 read -p "Entrez le nom de la nouvelle base de données : " new_database
 
 # Création du nouvel utilisateur et de la nouvelle base de données
-mysql -uroot -pPASSWORD<<MYSQL_SCRIPT
+mysql -uroot -pChangeMe<<MYSQL_SCRIPT
 CREATE DATABASE IF NOT EXISTS $new_database;
 CREATE USER '$new_user'@'localhost' IDENTIFIED BY '$new_user_password';
 GRANT ALL PRIVILEGES ON $new_database.* TO '$new_user'@'localhost';
