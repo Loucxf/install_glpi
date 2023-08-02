@@ -9,6 +9,9 @@ fi
 # Installation de MariaDB
 apt update
 apt install -y mariadb-server
+apt install perl -y
+apt install php-ldap php-imap php-apcu php-xmlrpc php-cas php-mysqli 
+php-mbstring php-curl php-gd php-simplexml php-xml php-intl php-zip php-bz2 -y
 
 # Exécution de la configuration sécurisée
 SECURE_MYSQL=$(expect -c "
@@ -65,3 +68,15 @@ FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
 echo "Le nouvel utilisateur '$new_user' et la nouvelle base de données '$new_database' ont été créés avec succès."
+
+systemctl reload apache2
+
+cd /tmp/
+wget https://github.com/glpi-project/glpi/releases/download/10.0.0/glpi-10.0.0.tgz
+
+tar xzf glpi-10.0.0.tgz -C /var/www/html
+
+chown -R www-data:www-data /home/mduqbvd/www/glpi
+chmod -R 775 /home/mduqbvd/www/glpi
+
+echo "normalement c good"
