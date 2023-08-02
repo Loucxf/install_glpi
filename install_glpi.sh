@@ -12,40 +12,6 @@ apt install -y mariadb-server apache2
 apt install perl -y
 apt install php-ldap php-imap php-apcu php-xmlrpc php-cas php-mysqli php-mbstring php-curl php-gd php-simplexml php-xml php-intl php-zip php-bz2 -y
 
-# Exécution de la configuration sécurisée
-SECURE_MYSQL=$(expect -c "
-set timeout 10
-spawn mysql_secure_installation
-
-expect \"Enter current password for root (enter for none):\"
-send \"\r\"
-
-expect \"Set root password?\"
-send \"Y\r\"
-
-expect \"New password:\"
-send \"YOUR_ROOT_PASSWORD\r\"
-
-expect \"Re-enter new password:\"
-send \"YOUR_ROOT_PASSWORD\r\"
-
-expect \"Remove anonymous users?\"
-send \"Y\r\"
-
-expect \"Disallow root login remotely?\"
-send \"Y\r\"
-
-expect \"Remove test database and access to it?\"
-send \"Y\r\"
-
-expect \"Reload privilege tables now?\"
-send \"Y\r\"
-
-expect eof
-")
-
-echo "$SECURE_MYSQL"
-
 # Vérification de l'état de MariaDB
 if ! systemctl is-active --quiet mariadb; then
     echo "Une erreur s'est produite lors de la configuration sécurisée de MariaDB."
@@ -75,7 +41,7 @@ wget https://github.com/glpi-project/glpi/releases/download/10.0.0/glpi-10.0.0.t
 
 tar xzf glpi-10.0.0.tgz -C /var/www/html
 
-chown -R www-data:www-data /home/mduqbvd/www/glpi
-chmod -R 775 /home/mduqbvd/www/glpi
+chown -R www-data:www-data /home/var/www/glpi
+chmod -R 775 /home/var/www/glpi
 
 echo "normalement c good"
