@@ -41,8 +41,8 @@ wget https://github.com/glpi-project/glpi/releases/download/10.0.0/glpi-10.0.0.t
 
 tar xzf glpi-10.0.0.tgz -C /var/www/html
 
-chown -R www-data:www-data /home/var/www/glpi
-chmod -R 775 /home/var/www/glpi
+chown -R www-data:www-data /var/www/html/glpi
+chmod -R 775 /var/www/html/glpi
 
 server_ip=$(hostname -I | awk '{print $1}')
 
