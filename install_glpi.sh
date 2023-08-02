@@ -8,10 +8,9 @@ fi
 
 # Installation de MariaDB
 apt update
-apt install -y mariadb-server
+apt install -y mariadb-server apache2
 apt install perl -y
-apt install php-ldap php-imap php-apcu php-xmlrpc php-cas php-mysqli 
-php-mbstring php-curl php-gd php-simplexml php-xml php-intl php-zip php-bz2 -y
+apt install php-ldap php-imap php-apcu php-xmlrpc php-cas php-mysqli php-mbstring php-curl php-gd php-simplexml php-xml php-intl php-zip php-bz2 -y
 
 # Exécution de la configuration sécurisée
 SECURE_MYSQL=$(expect -c "
